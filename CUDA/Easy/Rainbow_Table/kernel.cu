@@ -2,7 +2,7 @@
 #include <cuda_runtime.h>
 #include <stdint.h>
 
-__device__ unsigned int fnv1a_hash(int input) {
+__forceinline__ __device__ unsigned int fnv1a_hash(int input) {
     const unsigned int FNV_PRIME = 16777619;
     const unsigned int OFFSET_BASIS = 2166136261;
     
