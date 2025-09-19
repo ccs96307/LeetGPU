@@ -17,7 +17,7 @@ __device__ unsigned int fnv1a_hash(int input) {
 
 __global__ void fnv1a_hash_kernel(const int* input, unsigned int* output, int N, int R) {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
-    int val = (idx < N) ? input[idx] : 0.0f;
+    int val = (idx < N) ? input[idx] : 0;
 
     if (idx < N) {
         for (int i = 0; i < R; ++i) {
