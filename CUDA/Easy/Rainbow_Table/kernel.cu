@@ -1,5 +1,6 @@
 #include "kernel.cuh"
 #include <cuda_runtime.h>
+#include <stdint.h>
 
 __device__ unsigned int fnv1a_hash(int input) {
     const unsigned int FNV_PRIME = 16777619;
@@ -15,17 +16,19 @@ __device__ unsigned int fnv1a_hash(int input) {
     return hash;
 }
 
-__global__ void fnv1a_hash_kernel(const int* input, unsigned int* output, int N, int R) {
+__global__ void fnv1a_hash_kernel(const uint32_t* input, unsigned int* output, int N, int R) {
     int idx = blockIdx.x * blockDim.x + threadIdx.x;
-    int val = (idx < N) ? input[idx] : 0;
-
-    if (idx < N) {
-        for (int i = 0; i < R; ++i) {
-            val = fnv1a_hash(val);
-        }
-
-        output[idx] = val;
+    
+    // Early return
+    if (idx >= N) {
+        return;
     }
+
+    uint32_t val = input[idx];
+    for (int i = 0; i < R; ++i) {
+        val = fnv1a_hash(val);
+    }
+    output[idx] = val;
 }
 
 // input, output are device pointers (i.e. pointers to memory on the GPU)
