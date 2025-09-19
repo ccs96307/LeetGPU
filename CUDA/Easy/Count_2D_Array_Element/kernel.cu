@@ -21,7 +21,7 @@ __global__ void count_2d_equal_kernel(const int* input, int* output, int N, int 
     int warpId = localId / warpSize;
     int laneId = localId % warpSize;
 
-    int val = (idx < M * N && input[idx] == K) ? 1 : 0;
+    int val = (x < M && y < N && input[idx] == K) ? 1 : 0;
     val = warp_sum_func(val);
 
     if (laneId == 0) {
@@ -45,7 +45,7 @@ __global__ void count_2d_equal_kernel(const int* input, int* output, int N, int 
 extern "C" void solve(const int* input, int* output, int N, int M, int K) {
     cudaMemset(output, 0, sizeof(int));
 
-    dim3 threadsPerBlock(32, 32);
+    dim3 threadsPerBlock(16, 16);
     dim3 blocksPerGrid((M + threadsPerBlock.x - 1) / threadsPerBlock.x,
                        (N + threadsPerBlock.y - 1) / threadsPerBlock.y);
     
