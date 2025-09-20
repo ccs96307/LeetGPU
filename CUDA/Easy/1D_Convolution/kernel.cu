@@ -10,7 +10,12 @@ __global__ void convolution_1d_kernel(const float* input,
 
     int tId = threadIdx.x;
     int idx = blockIdx.x * blockDim.x + tId;
-    kernelData[tId] = (idx < kernel_size) ? kernel[idx] : 0.0f;
+
+    for (int i = tId; i < kernel_size; i += blockDim.x) {
+        kernelData[i] = kernel[i];
+    }
+
+    __syncthreads();
     
     if (idx < input_size - kernel_size + 1) {
         for (int k = 0; k < kernel_size; ++k) {
