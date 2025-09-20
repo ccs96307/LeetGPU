@@ -48,3 +48,21 @@ Matrix *C* (1 x 1):
 
 * 1 <= `M`, `N`, `K` <= 8192
 * Performance is measured with `M` = 8192, `N` = 6144, `K` = 4096
+
+---
+
+# Solution
+
+In matrix multiplication, we deal with three dimensions: `M`, `N`, and `K`.
+
+    A: (M, N)
+    B: (N, K)
+    C: (M, K)
+
+Each thread computes one element `C[row, x]`, where `row` (`y`) maps to `M` and `col` (`x`) maps to `K`.
+
+The computation involves iterating over the `N` axis (the reduction dimension).
+
+To improve performance, we use shared memory to cache tiles of `A` and `B`. This avoids repeatedly loading the same elements from global memory (even though they may already be cached in L1/L2). 
+
+Since many elements of `A` and `B` are reused across multiple dot products, shared memory provides significant speedups by reducing redundant global memory accesses.
