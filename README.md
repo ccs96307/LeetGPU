@@ -32,7 +32,7 @@ If you do not provide a kernel name, the default is `kernel.cu`.
     - [X] Leaky ReLU
     - [X] Rainbow Table
     - [X] Matrix Copy
-    - [ ] Count Array Element
+    - [X] Count Array Element
     - [ ] Count 2D Array Element
     - [ ] Sigmoid Linear Unit
     - [ ] Swish-Gated Linear Unit
