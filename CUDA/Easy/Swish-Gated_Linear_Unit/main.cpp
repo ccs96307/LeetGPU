@@ -22,17 +22,17 @@ struct TestCase {
 
 
 int main() {
-    // Updated test cases for SwiGLU
+    // Updated test cases for SiLU
     std::vector<TestCase> test_cases = {
         {
             "Example 1",
-            {1.0f, 2.0f, 3.0f, 4.0f},
-            {2.1931758f, 7.0463767f}
+            {0.5f, 1.0f, -0.5f},
+            {0.3112295f, 0.731059f, -0.1887705f}
         },
         {
-            "Example 2 (Corrected N)",
-            {0.5f, 1.0f},
-            {0.31122968f}
+            "Example 2",
+            {-1.0f, -2.0f, -3.0f, -4.0f, -5.0f},
+            {-0.26894143f, -0.23840584f, -0.14227763f, -0.07194484f, -0.03346425f}
         }
     };
 
@@ -41,31 +41,23 @@ int main() {
         const auto& tc = test_cases[i];
         int N = tc.input_array.size();
         
-        // For SwiGLU, the input size must be even and the output size is half
-        if (N % 2 != 0) {
-            std::cout << "--- Skipping Test Case: " << tc.description << " (Input size N must be even) ---" << std::endl;
-            continue;
-        }
-        int output_size = N / 2;
-        
         std::cout << std::format("--- Running Test Case: {} (N={}) ---",
                                tc.description, N) << std::endl;
 
-        // Calculate data sizes in bytes
-        size_t size_input = (size_t)N * sizeof(float);
-        size_t size_output = (size_t)output_size * sizeof(float);
+        // Calculate data size in bytes
+        size_t data_size = (size_t)N * sizeof(float);
 
         // Host and Device memory pointers
         float* d_input = nullptr;
-        float* d_output = nullptr;
-        std::vector<float> h_output(output_size);
+        float* d_output = nullptr; // Separate buffer for the output
+        std::vector<float> h_output(N);
 
         // Allocate memory on the GPU for both input and output
-        checkCudaError(cudaMalloc((void**)&d_input, size_input));
-        checkCudaError(cudaMalloc((void**)&d_output, size_output));
+        checkCudaError(cudaMalloc((void**)&d_input, data_size));
+        checkCudaError(cudaMalloc((void**)&d_output, data_size));
 
         // Copy input data from Host (CPU) to Device (GPU)
-        checkCudaError(cudaMemcpy(d_input, tc.input_array.data(), size_input, cudaMemcpyHostToDevice));
+        checkCudaError(cudaMemcpy(d_input, tc.input_array.data(), data_size, cudaMemcpyHostToDevice));
         
         // Call the solver function
         // IMPORTANT: Assumes your solve function signature is:
@@ -73,11 +65,11 @@ int main() {
         solve(d_input, d_output, N);
 
         // Copy the result from d_output on Device back to Host
-        checkCudaError(cudaMemcpy(h_output.data(), d_output, size_output, cudaMemcpyDeviceToHost));
+        checkCudaError(cudaMemcpy(h_output.data(), d_output, data_size, cudaMemcpyDeviceToHost));
 
         // Print results and verify
         bool test_passed_local = true;
-        for (int j = 0; j < output_size; ++j) {
+        for (int j = 0; j < N; ++j) {
             std::cout << std::format("Expected: {}, Got: {}", tc.expected_output[j], h_output[j]) << std::endl;
             if (std::abs(h_output[j] - tc.expected_output[j]) > 1e-5) {
                 test_passed_local = false;
@@ -88,7 +80,7 @@ int main() {
             std::cout << "Result: PASSED." << std::endl;
             ++tests_passed;
         } else {
-            std.cout << "Result: FAILED!" << std::endl;
+            std::cout << "Result: FAILED!" << std::endl;
         }
         
         // Free both GPU memory buffers
