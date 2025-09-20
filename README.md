@@ -24,9 +24,9 @@ If you do not provide a kernel name, the default is `kernel.cu`.
 - [ ] Easy
     - [X] Vector Addition
     - [X] Matrix Multiplication
-    - [ ] Matrix Transpose
-    - [ ] Color Inversion
-    - [ ] 1D Convolution
+    - [X] Matrix Transpose
+    - [X] Color Inversion
+    - [X] 1D Convolution
     - [ ] Reverse Array
     - [ ] ReLU
     - [ ] Leaky ReLU
