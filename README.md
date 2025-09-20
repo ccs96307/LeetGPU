@@ -38,7 +38,7 @@ If you do not provide a kernel name, the default is `kernel.cu`.
     - [X] Swish-Gated Linear Unit
 - [ ] Medium
     - [X] Reduction
-    - [ ] Softmax
+    - [X] Softmax
     - [ ] Softmax Attention
     - [ ] 2D Convolution
     - [ ] Histogramming
