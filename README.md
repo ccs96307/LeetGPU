@@ -33,8 +33,8 @@ If you do not provide a kernel name, the default is `kernel.cu`.
     - [X] Rainbow Table
     - [X] Matrix Copy
     - [X] Count Array Element
-    - [ ] Count 2D Array Element
-    - [ ] Sigmoid Linear Unit
+    - [X] Count 2D Array Element
+    - [X] Sigmoid Linear Unit
     - [ ] Swish-Gated Linear Unit
 - [ ] Medium
     - [ ] Reduction
