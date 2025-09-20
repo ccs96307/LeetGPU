@@ -21,7 +21,7 @@ If you do not provide a kernel name, the default is `kernel.cu`.
 ---
 
 ## TODO List (Updated 2025/09/20)
-- [ ] Easy
+- [X] Easy
     - [X] Vector Addition
     - [X] Matrix Multiplication
     - [X] Matrix Transpose
@@ -35,9 +35,9 @@ If you do not provide a kernel name, the default is `kernel.cu`.
     - [X] Count Array Element
     - [X] Count 2D Array Element
     - [X] Sigmoid Linear Unit
-    - [ ] Swish-Gated Linear Unit
+    - [X] Swish-Gated Linear Unit
 - [ ] Medium
-    - [ ] Reduction
+    - [X] Reduction
     - [ ] Softmax
     - [ ] Softmax Attention
     - [ ] 2D Convolution
