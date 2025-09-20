@@ -1,3 +1,4 @@
+#include "kernel.cuh"
 #include <cuda_runtime.h>
 #define TILE_DIM 16
 
