@@ -23,7 +23,7 @@ If you do not provide a kernel name, the default is `kernel.cu`.
 ## TODO List (Updated 2025/09/20)
 - [ ] Easy
     - [X] Vector Addition
-    - [ ] Matrix Multiplication
+    - [X] Matrix Multiplication
     - [ ] Matrix Transpose
     - [ ] Color Inversion
     - [ ] 1D Convolution
