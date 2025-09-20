@@ -29,7 +29,7 @@ If you do not provide a kernel name, the default is `kernel.cu`.
     - [X] 1D Convolution
     - [X] Reverse Array
     - [X] ReLU
-    - [ ] Leaky ReLU
+    - [X] Leaky ReLU
     - [ ] Rainbow Table
     - [ ] Matrix Copy
     - [ ] Count Array Element
