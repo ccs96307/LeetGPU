@@ -28,7 +28,7 @@ If you do not provide a kernel name, the default is `kernel.cu`.
     - [X] Color Inversion
     - [X] 1D Convolution
     - [X] Reverse Array
-    - [ ] ReLU
+    - [X] ReLU
     - [ ] Leaky ReLU
     - [ ] Rainbow Table
     - [ ] Matrix Copy
