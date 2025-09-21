@@ -43,8 +43,8 @@ If you do not provide a kernel name, the default is `kernel.cu`.
     - [ ] 2D Convolution
     - [ ] Histogramming
     - [ ] Sorting
-    - [ ] Prefix Sum
-    - [ ] Dot Product
+    - [X] Prefix Sum
+    - [X] Dot Product
     - [ ] Sparse Matrix-Vector Multiplication
     - [ ] General Matrix Multiplication
     - [ ] Categorical Cross Entropy Loss
