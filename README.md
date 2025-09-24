@@ -41,7 +41,7 @@ If you do not provide a kernel name, the default is `kernel.cu`.
     - [X] Softmax
     - [ ] Softmax Attention
     - [X] 2D Convolution
-    - [ ] Histogramming
+    - [X] Histogramming
     - [ ] Sorting
     - [X] Prefix Sum
     - [X] Dot Product
