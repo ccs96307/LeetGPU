@@ -10,7 +10,7 @@ __global__ void histogrammingKernel(const int* input, int* histogram, int N, int
     int tId = threadIdx.x;
     int idx = blockIdx.x * blockDim.x + tId;
 
-    for (int i = tId; i < num_bins; tId += blockDim.x) {
+    for (int i = tId; i < num_bins; i += blockDim.x) {
         sdata[i] = 0;
     }
 
