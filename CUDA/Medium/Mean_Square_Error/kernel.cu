@@ -48,9 +48,15 @@ __global__ void MSEKernel(const float* predictions, const float* targets, float*
 
 // predictions, targets, mse are device pointers
 extern "C" void solve(const float* predictions, const float* targets, float* mse, int N) {
+    // Init
+    cudaMemset(mse, 0, sizeof(float));
+
     dim3 threadsPerBlock(256);
     dim3 blocksPerGrid((N + threadsPerBlock.x - 1) / threadsPerBlock.x);
-    size_t smem = 32 * sizeof(float);
+
+    int _warpSize = 32;
+    int _warpNum = (threadsPerBlock.x + _warpSize - 1) / _warpSize;
+    size_t smem = _warpNum * sizeof(float);
 
     MSEKernel<<<blocksPerGrid, threadsPerBlock, smem>>>(predictions, targets, mse, N);
     cudaDeviceSynchronize();

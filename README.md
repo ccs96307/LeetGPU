@@ -48,7 +48,7 @@ If you do not provide a kernel name, the default is `kernel.cu`.
     - [ ] Sparse Matrix-Vector Multiplication
     - [ ] General Matrix Multiplication
     - [ ] Categorical Cross Entropy Loss
-    - [ ] Mean Square Error
+    - [X] Mean Square Error
     - [ ] Gaussian Blur
     - [ ] Ordinary Least Squares
     - [ ] Logistic Regression
