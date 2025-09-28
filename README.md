@@ -60,8 +60,8 @@ If you do not provide a kernel name, the default is `kernel.cu`.
     - [ ] 2D Max Pooling
     - [ ] Count 3D Array Element
     - [ ] BFS Shortest Path
-    - [ ] Subarray Sum
-    - [ ] 2D Subarray Sum
+    - [X] Subarray Sum
+    - [X] 2D Subarray Sum
     - [ ] 3D Subarray Sum
     - [ ] RMS Normalization
     - [ ] Max Subarray Sum
